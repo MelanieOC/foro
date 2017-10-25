@@ -17,9 +17,8 @@ const Comment = ({ name, comment, index }) => {
         </Col>
       </Row>
       <div>
-        <Button onClick={()=>removeComment(index)}>
-          <span>Delete</span>
-          <i class="fa fa-trash" aria-hidden="true"></i>
+        <Button className='delete' onClick={() => removeComment(index)}>
+          x
         </Button>
       </div>
     </div>
@@ -28,25 +27,27 @@ const Comment = ({ name, comment, index }) => {
 const App = ({ comments }) => {
   const onSubmit = (e) => {
     e.preventDefault();
-    addComment(this.name.value, this.comment.value);
-    this.name.value='';
-    this.comment.value='';
+    if(this.name.value && this.comment.value){
+      addComment(this.name.value, this.comment.value);
+      this.name.value = '';
+      this.comment.value = '';
+    }
   }
   return (
     <div class="container">
-      <div className='caja centro'>
+      <div className='caja centro form' style={{marginTop:'30px'}}>
         <h3>NEW COMMENT</h3>
         <form onSubmit={onSubmit}>
           <FormGroup>
             <InputGroup>
               <InputGroup.Addon><i class="fa fa-user fa-fw"></i></InputGroup.Addon>
-              <input className='form-control' type="text" placeholder="Name" ref={(e) => this.name = e} />
+              <FormControl type="text" placeholder="Name" inputRef={ref => { this.name = ref }} />
             </InputGroup>
           </FormGroup>
           <FormGroup>
             <InputGroup>
               <InputGroup.Addon><i class="fa fa-comment"></i></InputGroup.Addon>
-              <textarea className='form-control' type="text" placeholder="Comment" ref={(e) => this.comment = e} ></textarea>
+              <FormControl componentClass='textarea' type="text" placeholder="Comment" inputRef={ref => { this.comment = ref }} />
             </InputGroup>
           </FormGroup>
           <Button type="submit" bsStyle='warning' id='post'>
@@ -54,7 +55,7 @@ const App = ({ comments }) => {
           </Button>
         </form>
       </div>
-      <div className='centro'>
+      <div className='centro comments'>
         <h3>
           <span>Comments</span>
           <i class="fa fa-comments" aria-hidden="true"></i>
@@ -64,7 +65,6 @@ const App = ({ comments }) => {
           {
             comments.map((item, index) => <Comment key={index} name={item.name} comment={item.comment} index={index} />)
           }
-
         </div>
       </div>
     </div>

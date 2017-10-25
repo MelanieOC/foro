@@ -1,5 +1,8 @@
+body{
+  background-image: url('http://data.whicdn.com/images/227892539/large.jpg')
+}
 .caja {
-  background: #9fcbd2;
+  background: #6fdbdb;
   border-radius: 10px;
   padding: 1%;
 }
@@ -10,19 +13,44 @@
 .comentario{
   padding: 5px;
   margin: 10px auto;
+  position: relative;
 }
-#post{
-  color: rgb(180, 218, 248);
+.form{
+  border: 5px solid white;
+}
+.comments{
+  background-color: white;
+  width: 60%;
+  padding: 20px 30px;
+  border-radius: 10px;
+  margin-top: 30px;
+  border: 3px solid #6fdbdb;
+}
+.delete{
+  position: absolute;
+  top:5%;
+  right: 2%;
 }
 .comentario h2{
-  font-size: 4em;
+  font-size: 5em;
 }
-
 @media(max-width: 900px){
   .centro{
-    width: 90%;
+    width: 60%;
   }
-  .comentario h2{
-    font-size: 2.5em;
+}
+@media(max-width: 800px){
+  .centro{
+    width: 70%;
+  }
+}
+@media(max-width: 700px){
+  .centro{
+    width: 80%;
+  }
+}
+@media(max-width: 600px){
+  .centro{
+    width: 90%;
   }
 }
