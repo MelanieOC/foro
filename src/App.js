@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { FormGroup, FormControl, InputGroup, Button, Row, Col } from 'react-bootstrap';
 import { connect } from "redux-zero/react";
-import { addComment } from './actions';
+import { addComment, removeComment } from './actions';
 
 const Comment = ({ name, comment, index }) => {
   return (
@@ -17,7 +17,7 @@ const Comment = ({ name, comment, index }) => {
         </Col>
       </Row>
       <div>
-        <Button>
+        <Button onClick={removeComment}>
           <span>Delete</span>
           <i class="fa fa-trash" aria-hidden="true"></i>
         </Button>
@@ -28,6 +28,7 @@ const Comment = ({ name, comment, index }) => {
 const App = ({ comments }) => {
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log ( 'this..', this);
     console.log(this.name.value);
     console.log(this.comment.value);
     addComment(this.name.value, this.comment.value)
