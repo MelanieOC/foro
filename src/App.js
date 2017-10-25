@@ -17,7 +17,7 @@ const Comment = ({ name, comment, index }) => {
         </Col>
       </Row>
       <div>
-        <Button onClick={removeComment}>
+        <Button onClick={()=>removeComment(index)}>
           <span>Delete</span>
           <i class="fa fa-trash" aria-hidden="true"></i>
         </Button>
@@ -28,10 +28,9 @@ const Comment = ({ name, comment, index }) => {
 const App = ({ comments }) => {
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log ( 'this..', this);
-    console.log(this.name.value);
-    console.log(this.comment.value);
-    addComment(this.name.value, this.comment.value)
+    addComment(this.name.value, this.comment.value);
+    this.name.value='';
+    this.comment.value='';
   }
   return (
     <div class="container">
@@ -41,13 +40,13 @@ const App = ({ comments }) => {
           <FormGroup>
             <InputGroup>
               <InputGroup.Addon><i class="fa fa-user fa-fw"></i></InputGroup.Addon>
-              <FormControl type="text" placeholder="Name" ref={(e) => this.name = e} />
+              <input className='form-control' type="text" placeholder="Name" ref={(e) => this.name = e} />
             </InputGroup>
           </FormGroup>
           <FormGroup>
             <InputGroup>
               <InputGroup.Addon><i class="fa fa-comment"></i></InputGroup.Addon>
-              <FormControl componentClass="textarea" type="text" placeholder="Comment" ref={(e) => this.comment = e} />
+              <textarea className='form-control' type="text" placeholder="Comment" ref={(e) => this.comment = e} ></textarea>
             </InputGroup>
           </FormGroup>
           <Button type="submit" bsStyle='warning' id='post'>
